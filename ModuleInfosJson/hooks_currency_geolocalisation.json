@@ -1,0 +1,28 @@
+{
+  "title":			"hooks_currency_geolocalisation",
+  "type":           "hooks",
+  "vendor":			"ClicShopping",
+  "is_free":   "Yes",
+  "website_link_to_sell" : "",
+  "version":			1.0,
+  "req_core_version":	3.0,
+  "license":			"GPL 2 - MIT",
+  "tag":			    "currency, geolocalisation",
+  "install":            "includes/Module/Hooks/Shop/AllShop",
+  "module_directory":   "Module",
+  "apps_name":          "",
+  "type_module":      "Fixe",
+  "dependance":       "Order App",
+  "description":        "This hooks allow you to change the currency in function the IP of the customer (geoplugin)",
+  "image":            "",
+
+  "authors": [
+    {
+      "name":		    "ClicShopping Team",
+      "company":	    "Innov-concept",
+      "email":	      "",
+      "website":	    "http://www.clicshopping.com",
+      "Community":	  "http://www.clicshopping.org"
+    }
+  ]
+}
