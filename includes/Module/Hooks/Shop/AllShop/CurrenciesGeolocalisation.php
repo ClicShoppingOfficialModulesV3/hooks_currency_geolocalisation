@@ -4,7 +4,7 @@
  * @copyright Copyright 2008 - http://www.innov-concept.com
  * @Brand : ClicShopping(Tm) at Inpi all right Reserved
  * @license GPL 2 License & MIT Licencse
- 
+
  * http://www.geoplugin.com
 */
 
@@ -21,7 +21,7 @@
     public function __construct() {
       global $spider_flag;
 
-      if (!defined('CONFIGURATION_CURRENCIES_GEOLOCALISATION_SSLKEY')) {
+      if (defined('CONFIGURATION_CURRENCIES_GEOLOCALISATION_SSLKEY')) {
         $ssl_key = CONFIGURATION_CURRENCIES_GEOLOCALISATION_SSLKEY;
       }
 
@@ -296,8 +296,10 @@
     }
 
     public function execute() {
-      if (!defined(CONFIGURATION_CURRENCIES_GEOLOCALISATION) === true || is_null(CONFIGURATION_CURRENCIES_GEOLOCALISATION) || empty(CONFIGURATION_CURRENCIES_GEOLOCALISATION)) {
+      if (!defined(CONFIGURATION_CURRENCIES_GEOLOCALISATION)) {
         $this->install();
+
+        Cache::clear('menu-administrator');
       }
 
       if ($this->spiderFlag === false) {
