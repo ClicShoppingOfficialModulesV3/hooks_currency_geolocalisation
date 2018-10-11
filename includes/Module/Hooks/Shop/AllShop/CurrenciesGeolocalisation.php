@@ -1,12 +1,13 @@
 <?php
-/*
- * Geolocalisation.phpp
- * @copyright Copyright 2008 - http://www.innov-concept.com
- * @Brand : ClicShopping(Tm) at Inpi all right Reserved
- * @license GPL 2 License & MIT Licencse
-
- * http://www.geoplugin.com
-*/
+/**
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4
+ *
+ *
+ */
 
   namespace ClicShopping\OM\Module\Hooks\Shop\AllShop;
 
@@ -23,10 +24,10 @@
 
       if (defined('CONFIGURATION_CURRENCIES_GEOLOCALISATION_SSLKEY')) {
         $ssl_key = CONFIGURATION_CURRENCIES_GEOLOCALISATION_SSLKEY;
+        $this->SSLKey = $ssl_key;
       }
 
       $this->UrlAPISSL = "https://ssl.geoplugin.net/json.gp?ip=";
-      $this->SSLKey = $ssl_key;
       $this->UrlAPI = 'http://www.geoplugin.net/json.gp?ip=';
       $this->spiderFlag = $spider_flag;
       $this->ipCustomer = HTTP::GetIpAddress();
@@ -226,7 +227,7 @@
  * osc_get_currencies_location
 */
     private function getCurrenciesByGeolocalization() {
-        if (CONFIGURATION_CURRENCIES_GEOLOCALISATION == 'true') {
+        if (defined('CONFIGURATION_CURRENCIES_GEOLOCALISATION') && CONFIGURATION_CURRENCIES_GEOLOCALISATION == 'true') {
           $currencies_by_geolocalization =  $this->GetCurrenciesLocation();
         } else {
           $currencies_by_geolocalization = false;
@@ -302,7 +303,7 @@
         Cache::clear('menu-administrator');
       }
 
-      if ($this->spiderFlag === false) {
+      if ($this->spiderFlag === false && defined(CONFIGURATION_CURRENCIES_GEOLOCALISATION)) {
         if ($this->getCurrenciesByGeolocalization() != false) {
           $_SESSION['currency'] = $this->getCurrenciesByGeolocalization();
         }
