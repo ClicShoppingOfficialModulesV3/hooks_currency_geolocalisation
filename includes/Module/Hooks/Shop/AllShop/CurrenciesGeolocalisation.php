@@ -15,13 +15,13 @@
   use ClicShopping\OM\Cache;
   use ClicShopping\OM\HTTP;
 
+  use ClicShopping\Service\Shop\WhosOnline;
+
   class CurrenciesGeolocalisation {
 
     protected $spider_flag;
 
     public function __construct() {
-      global $spider_flag;
-
       if (defined('CONFIGURATION_CURRENCIES_GEOLOCALISATION_SSLKEY')) {
         $ssl_key = CONFIGURATION_CURRENCIES_GEOLOCALISATION_SSLKEY;
         $this->SSLKey = $ssl_key;
@@ -29,7 +29,7 @@
 
       $this->UrlAPISSL = "https://ssl.geoplugin.net/json.gp?ip=";
       $this->UrlAPI = 'http://www.geoplugin.net/json.gp?ip=';
-      $this->spiderFlag = $spider_flag;
+      $this->spiderFlag = WhosOnline::getResultSpiderFlag();
       $this->ipCustomer = HTTP::GetIpAddress();
     }
 
@@ -247,10 +247,10 @@
 
       if ($CLICSHOPPING_Language->getId() == 1) {
          $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Souhaitez-vous afficher une devise automatique par d&eacute;faut en fonction du continent ?',
+          'configuration_title' => 'Souhaitez-vous afficher une devise automatique par défaut en fonction du continent ?',
           'configuration_key' => 'CONFIGURATION_CURRENCIES_GEOLOCALISATION',
           'configuration_value' => 'false',
-          'configuration_description' => 'En fonction de la provenance du client et de son continent, le tarif du produit prend par défaut la devise du continent du client.<br /><br /><u><strong>Note :</strong></u><br />- Les devises par d&eacute;faut impl&eacute;ment&eacute;es sont : USD, EUR, CAD <br />- Si le client provient d\'un autre continent, ce sera la devise par d&eacute;faut qui s\'affichera.<br />- L\'ajustement automatique des devises en fonction de la langue ne fonctionne pas dans ce cas.<br />L\'analyse de l\'addresseIP du client est faite à partir de ce site : http://geoplugin.net.<br />Veuillez lire leurs instructions.<br /><br /><i>(Valeur True = Oui - Valeur False = Non)</i>',
+          'configuration_description' => 'En fonction de la provenance du client et de son continent, le tarif du produit prend par défaut la devise du continent du client.<br /><br /><u><strong>Note :</strong></u><br />- Les devises par défaut implémentées sont : USD, EUR, CAD <br />- Si le client provient d\'un autre continent, ce sera la devise par défaut qui s\'affichera.<br />- L\'ajustement automatique des devises en fonction de la langue ne fonctionne pas dans ce cas.<br />L\'analyse de l\'addresseIP du client est faite à partir de ce site : http://geoplugin.net.<br />Veuillez lire leurs instructions.<br /><br /><i>(Valeur True = Oui - Valeur False = Non)</i>',
           'configuration_group_id' => '1',
           'sort_order' => '9',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))',
@@ -304,7 +304,7 @@
       }
 
       if ($this->spiderFlag === false && defined(CONFIGURATION_CURRENCIES_GEOLOCALISATION)) {
-        if ($this->getCurrenciesByGeolocalization() != false) {
+        if ($this->getCurrenciesByGeolocalization() !== false) {
           $_SESSION['currency'] = $this->getCurrenciesByGeolocalization();
         }
 
