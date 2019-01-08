@@ -8,7 +8,7 @@ The currency taken in consideration are EUR, CAD and US.
 
 this module must be functional until geoplugin works.
 
-All informations about the CliCshopping
+All informations about the ClicShopping
 
  Community : https://www.clicshopping.org
 
