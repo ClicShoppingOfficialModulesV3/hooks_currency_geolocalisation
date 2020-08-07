@@ -32,7 +32,7 @@
       $this->UrlAPISSL = "https://ssl.geoplugin.net/json.gp?ip=";
       $this->UrlAPI = 'http://www.geoplugin.net/json.gp?ip=';
       $this->spiderFlag = WhosOnline::getResultSpiderFlag();
-      $this->ipCustomer = HTTP::GetIpAddress();
+      $this->ipCustomer = HTTP::getIpAddress();
     }
 
     /*
@@ -192,7 +192,7 @@
      * @access public
      * osc_get_currencies_location
     */
-    public function GetCurrenciesLocation(): string
+    public function getCurrenciesLocation(): string
     {
       $country_code2 = $this->getCustomerCountryCode();
 
@@ -240,7 +240,7 @@
     private function getCurrenciesByGeolocalization()
     {
       if (defined('CONFIGURATION_CURRENCIES_GEOLOCALISATION') && CONFIGURATION_CURRENCIES_GEOLOCALISATION == 'true') {
-        $currencies_by_geolocalization = $this->GetCurrenciesLocation();
+        $currencies_by_geolocalization = $this->getCurrenciesLocation();
       } else {
         $currencies_by_geolocalization = false;
       }
