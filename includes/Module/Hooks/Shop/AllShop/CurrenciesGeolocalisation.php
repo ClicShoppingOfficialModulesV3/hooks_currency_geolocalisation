@@ -38,7 +38,7 @@
     /*
      * indicate different informations on the customer
      * @param $localisation_array return an array on the localisation
-     * @access public
+     *
     */
     private function setUrlAPI(): string
     {
@@ -59,7 +59,7 @@
      * Display all git information inside a repository or sub directory
      * @param $result , repository to analyse
      * @return $repo,values of array of all git information
-     * @access public
+     *
      */
     public function displayDataAPI(): string
     {
@@ -114,7 +114,7 @@
      * getCustomerCountryCode
      * @param
      * @return $country_code,code iso 2 of the country - FR
-     * @access public
+     *
      */
     public function getCustomerCountryCode(): string
     {
@@ -129,7 +129,7 @@
      * getCustomerCountryName
      * @param
      * @return $country_code, name of the country - FRANCE
-     * @access public
+     *
      */
     public function getCustomerCountryName(): string
     {
@@ -144,7 +144,7 @@
      * getCustomerRegionCode
      * @param
      * @return $region_code, region of the country name - Jura
-     * @access public
+     *
      */
     public function getCustomerRegionCode(): string
     {
@@ -159,7 +159,7 @@
      * getCustomerRegionName
      * @param
      * @return $region, baem of region of the country name - Jura
-     * @access public
+     *
      */
     public function getCustomerRegionName(): string
     {
@@ -174,7 +174,7 @@
      * getCustomerContinent
      * @param
      * @return $continent, conteninent of the country - NA / EU / AS ...
-     * @access public
+     *
      */
 
     public function getCustomerContinent(): string
@@ -189,7 +189,7 @@
     /*
      * Currency in function the localisation
      * @param $new_currency return the currency in function the localisation
-     * @access public
+     *
      * osc_get_currencies_location
     */
     public function getCurrenciesLocation(): string
@@ -234,7 +234,7 @@
      * Define currency in function the localisation
      * @param
      * @return : false is nothing else return the currency
-     * @access public
+     *
      * osc_get_currencies_location
     */
     private function getCurrenciesByGeolocalization()
@@ -250,7 +250,7 @@
     /*
      * In stall db if does'nt exist
      * @param
-     * @access public
+     *
      *
     */
     private function install()
