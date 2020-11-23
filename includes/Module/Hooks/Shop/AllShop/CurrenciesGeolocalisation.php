@@ -284,14 +284,14 @@
 
     public function execute()
     {
-      if (!defined(CONFIGURATION_CURRENCIES_GEOLOCALISATION)) {
+      if (!defined('CONFIGURATION_CURRENCIES_GEOLOCALISATION')) {
         $this->install();
 
         Cache::clear('menu-administrator');
         Cache::clear('configuration');
       }
 
-      if ($this->spiderFlag === false && defined(CONFIGURATION_CURRENCIES_GEOLOCALISATION)) {
+      if ($this->spiderFlag === false && defined('CONFIGURATION_CURRENCIES_GEOLOCALISATION')) {
         if ($this->getCurrenciesByGeolocalization() !== false) {
           $_SESSION['currency'] = $this->getCurrenciesByGeolocalization();
         }
