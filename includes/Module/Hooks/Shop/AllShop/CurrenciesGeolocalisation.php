@@ -24,7 +24,7 @@
 
     public function __construct()
     {
-      if (defined('CONFIGURATION_CURRENCIES_GEOLOCALISATION_SSLKEY')) {
+      if (\defined('CONFIGURATION_CURRENCIES_GEOLOCALISATION_SSLKEY')) {
         $ssl_key = CONFIGURATION_CURRENCIES_GEOLOCALISATION_SSLKEY;
         $this->SSLKey = $ssl_key;
       }
@@ -43,7 +43,7 @@
     private function setUrlAPI(): string
     {
 
-      if (!empty($this->SSLKey) && !is_null($this->SSLKey)) {
+      if (!empty($this->SSLKey) && !\is_null($this->SSLKey)) {
         $url = $this->UrlAPISSL . $this->ipCustomer . '&k=' . $this->SSLKey;
       } else {
         $url = $this->UrlAPI . $this->ipCustomer;
@@ -239,7 +239,7 @@
     */
     private function getCurrenciesByGeolocalization()
     {
-      if (defined('CONFIGURATION_CURRENCIES_GEOLOCALISATION') && CONFIGURATION_CURRENCIES_GEOLOCALISATION == 'true') {
+      if (\defined('CONFIGURATION_CURRENCIES_GEOLOCALISATION') && CONFIGURATION_CURRENCIES_GEOLOCALISATION == 'true') {
         $currencies_by_geolocalization = $this->getCurrenciesLocation();
       } else {
         $currencies_by_geolocalization = false;
@@ -284,14 +284,14 @@
 
     public function execute()
     {
-      if (!defined('CONFIGURATION_CURRENCIES_GEOLOCALISATION')) {
+      if (!\defined('CONFIGURATION_CURRENCIES_GEOLOCALISATION')) {
         $this->install();
 
         Cache::clear('menu-administrator');
         Cache::clear('configuration');
       }
 
-      if ($this->spiderFlag === false && defined('CONFIGURATION_CURRENCIES_GEOLOCALISATION')) {
+      if ($this->spiderFlag === false && \defined('CONFIGURATION_CURRENCIES_GEOLOCALISATION')) {
         if ($this->getCurrenciesByGeolocalization() !== false) {
           $_SESSION['currency'] = $this->getCurrenciesByGeolocalization();
         }
