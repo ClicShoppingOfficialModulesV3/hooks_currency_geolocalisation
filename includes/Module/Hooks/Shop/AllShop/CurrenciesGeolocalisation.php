@@ -239,7 +239,7 @@
     */
     private function getCurrenciesByGeolocalization()
     {
-      if (\defined('CONFIGURATION_CURRENCIES_GEOLOCALISATION') && CONFIGURATION_CURRENCIES_GEOLOCALISATION == 'true') {
+      if (\defined('CONFIGURATION_CURRENCIES_GEOLOCALISATION')) {
         $currencies_by_geolocalization = $this->getCurrenciesLocation();
       } else {
         $currencies_by_geolocalization = false;
@@ -279,12 +279,12 @@
           'set_function' => '',
           'date_added' => 'now()'
         ]
-        );
+      );
     }
 
     public function execute()
     {
-      if (!\defined('CONFIGURATION_CURRENCIES_GEOLOCALISATION')) {
+       if (!\defined('CONFIGURATION_CURRENCIES_GEOLOCALISATION') ) {
         $this->install();
 
         Cache::clear('menu-administrator');
